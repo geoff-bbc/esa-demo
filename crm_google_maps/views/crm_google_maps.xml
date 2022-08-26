@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="crm_google_maps assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/crm_google_maps/static/src/js/crm_google_maps.js"></script>
+
+        </xpath>
+    </template>
+
+</odoo>

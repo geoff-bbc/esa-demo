@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="assets_backend_custom" name="task_timer assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/fl_project_task_timer/static/src/js/timer.js"></script>
+            <link rel="stylesheet" href="/fl_project_task_timer/static/src/css/project_task.css" type="text/css" />
+        </xpath>
+    </template>
+</odoo>

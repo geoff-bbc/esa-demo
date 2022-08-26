@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_project_task_timer_inherit_button" model="ir.ui.view">
+            <field name="name">project.task.timer.inherit.button</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <header>
+                    <field name="is_user_working" invisible="1"/>
+                    <button name="toggle_start" string="Start Task" type="object" class="btn btn-success"
+                            attrs="{'invisible': [('is_user_working', '=', True)]}" />
+                    <button name="toggle_end" string="End Task" type="object" class="btn btn-danger"
+                            attrs="{'invisible': [('is_user_working', '=', False)]}" />
+                </header>
+            </field>
+        </record>
+
+        <record id="view_project_task_timer_inherit_fields" model="ir.ui.view">
+            <field name="name">project.task.timer.inherit.fields</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='unit_amount']" position="before">
+                    <field name="date_start" required="1"/>
+                    <field name="date_end"/>
+                    <field name="timer_duration" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='progress']" position="after">
+                    <field name="is_user_working" invisible="1"/>
+                    <label for="duration"/>
+                    <div>
+                        <button style="pointer-events: none;" class="oe_inline label label-default">
+                            <field name="duration" widget="time_counter"/>
+                        </button>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_task_kanban_timer_inherit_button" model="ir.ui.view">
+            <field name="name">project.task.timer.kanban.inherit.button</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_kanban"/>
+            <field name="arch" type="xml">
+                <templates position="before">
+                    <field name="is_user_working"/>
+                </templates>
+                <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="after">
+                    <div class="o_kanban_primary_left_timer">
+                        <button name="toggle_start" type="object" class="btn btn-sm btn-success"
+                                attrs="{'invisible': [('is_user_working', '=', True)]}">Start</button>
+                        <button name="toggle_end" type="object" class="btn btn-sm btn-danger"
+                                attrs="{'invisible': [('is_user_working', '=', False)]}">End</button>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
